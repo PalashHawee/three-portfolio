@@ -1,0 +1,88 @@
+.hero{
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.hSection{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.hSection.left{
+     margin-left: 50px;
+}
+
+.hTitle{
+    margin-top: 50px;
+    font-size: 50px;
+    color: #eb92ff;
+   
+}
+
+.hTitle span{
+    color: white;
+}
+
+.awards{
+    width: 30%;
+}
+
+.awards p{
+    font-size: 14px;
+    color: #d7d7d7;
+    margin: 16px 0px;
+}
+
+.socials{
+    display: flex;
+    gap: 8px;
+}
+
+.scroll{
+    margin-bottom: 50px;
+    width: max-content;
+}
+
+.hSection.right{
+    align-items: end;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.follow{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color:#bd32dc ;
+    padding: 16px;
+    border-bottom-right-radius: 10px;
+}
+
+.follow img{
+    width: 20px;
+    height: 20px;
+}
+
+.followTextContainer{
+     width: 20px;
+    height: 20px;
+}
+.followText{
+    background-color: #0644ff;
+    font-size: 12px;
+    rotate: 90deg;
+    width: max-content;
+    height: 100%;
+    transform-origin: left top;
+    transform: translateY(-20px);
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    border-bottom-right-radius: 10px;
+}

@@ -1,56 +1,105 @@
-import React from "react";
+import React, { Suspense } from "react";
+import { motion } from "motion/react";
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa"; // Import React Icons
 import "./hero.css";
 
 import Speech from "./Speech";
+import { Canvas } from "@react-three/fiber";
+import Shape from "./Shape";
+
+const socialVariants = {
+  initial: { opacity: 0, x: -100 },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1, staggerChildren: 0.2 },
+  },
+};
+
+const followVariants = {
+  initial: { opacity: 0, y: -100 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1, staggerChildren: 0.2 },
+  },
+};
 
 const Hero = () => {
   return (
     <div className="hero">
       <div className="hSection left">
-        <h1 className="hTitle">
+        <motion.h1
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="hTitle"
+        >
           Hey There, <br /> <span>I&apos;m Palash Hawee</span>
-        </h1>
-        <div className="awards">
-          <h2>Full Stack Developer</h2>
-          <p>Experienced MERN Stack Developer</p>
-          <div className="socials">
+        </motion.h1>
+        <motion.div
+          variants={socialVariants}
+          initial="initial"
+          animate="animate"
+          className="awards"
+        >
+          <motion.h2 variants={socialVariants}>Full Stack Developer</motion.h2>
+          <motion.p variants={socialVariants}>
+            Experienced MERN Stack Developer
+          </motion.p>
+          <motion.div variants={socialVariants} className="socials">
             {/* Social Media Links */}
-            <a
+            <motion.a
+              variants={socialVariants}
               href="https://github.com/PalashHawee"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
               <FaGithub size={24} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              variants={socialVariants}
               href="https://www.linkedin.com/in/palash-hawee/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
               <FaLinkedin size={24} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              variants={socialVariants}
               href="https://www.instagram.com/palashhawee/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
               <FaInstagram size={24} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              variants={socialVariants}
               href="https://www.facebook.com/palashpaul.sangma/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
             >
               <FaFacebook size={24} />
-            </a>
-          </div>
-        </div>
-        <a href="#services" className="scroll">
+            </motion.a>
+          </motion.div>
+        </motion.div>
+        <motion.a
+          animate={{
+            y: [0, 5],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: "easeInOut",
+          }}
+          href="#services"
+          className="scroll"
+        >
           {/* Scroll SVG */}
           <svg
             width="50px"
@@ -64,31 +113,42 @@ const Hero = () => {
               stroke="white"
               strokeWidth="1"
             />
-            <path
+            <motion.path
+              animate={{ y: [0, 5] }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+                ease: "easeInOut",
+              }}
               d="M12 5V8"
               stroke="white"
               strokeWidth="1"
               strokeLinecap="round"
             />
           </svg>
-        </a>
+        </motion.a>
       </div>
       <div className="hSection right">
         {/* follow*/}
-        <div className="follow">
-          <a href="">
+        <motion.div
+          variants={followVariants}
+          initial="initial"
+          animate="animate"
+          className="follow"
+        >
+          <motion.a variants={followVariants} href="">
             <img src="/youtube.png" />
-          </a>
-          <a href="">
+          </motion.a>
+          <motion.a variants={followVariants} href="">
             <img src="/facebook.png" />
-          </a>
-          <a href="">
+          </motion.a>
+          <motion.a variants={followVariants} href="">
             <img src="/instagram.png" />
-          </a>
-          <div className="followTextContainer">
+          </motion.a>
+          <motion.div variants={followVariants} className="followTextContainer">
             <div className="followText">Follow me</div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         {/* BUBBlE */}
         <Speech />
         {/* certificate */}
@@ -98,8 +158,17 @@ const Hero = () => {
           Besant Technologies, Bengaluru  */}
         </div>
         {/* contact */}
-        <a href="/#contact" className="contactLink">
-          <div className="conatactButton">
+        <motion.a
+          href="/#contact"
+          className="contactLink"
+          animate={{ x: [200, 0], opacity: [0, 1] }}
+          transition={{ duration: 2 }}
+        >
+          <motion.div
+            className="conatactButton"
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          >
             <svg viewBox="0 0 200 200" width="150" height="150">
               <circle cx="100" cy="100" r="90" fill="#bb0af9" />
               <path
@@ -116,22 +185,19 @@ const Hero = () => {
                 </textPath>
               </text>
             </svg>
-            <div className="arrow">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="50"
-                height="50"
-                fill="none"
-                stroke="black"
-                strokeWidth="2"
-              >
-                <line x1="6" y1="18" x2="18" y2="6" />
-                <polyline points="9 6 18 6 18 15" />
-              </svg>
-            </div>
-          </div>
-        </a>
+          </motion.div>
+        </motion.a>
+      </div>
+      <div className="bg">
+        {/* 3D */}
+        <Canvas>
+          <Suspense fallback="loading...">
+            <Shape />
+          </Suspense>
+        </Canvas>
+        <div className="hImg">
+          <img src="/me2.JPG" alt="hero" />
+        </div>
       </div>
     </div>
   );
